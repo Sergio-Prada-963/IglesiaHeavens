@@ -7,7 +7,7 @@ routerCreyentes.get("/", creyentesController.getCreyentes);
 routerCreyentes.get("/:id", creyentesController.getCreyentesId);
 routerCreyentes.post("/", creyentesController.addCreyentes);
 routerCreyentes.delete("/:id", creyentesController.deleteCreyentes);
-routerCreyentes.put("/:id", creyentesController.updateCreyentes);
+routerCreyentes.patch("/:id", creyentesController.updateCreyentes);
 
 
 export default routerCreyentes;

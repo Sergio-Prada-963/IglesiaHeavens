@@ -17,7 +17,7 @@ const conection_result = async (res,sqldata)=>{
 
 const getCreyentes = async (req,res)=> {
     try {
-        conection_result(res,["SELECT * FROM categorias"])
+        conection_result(res,["SELECT * FROM Creyente"])
     } catch (error) {
         errores(res,error)
     }
@@ -26,7 +26,7 @@ const getCreyentes = async (req,res)=> {
 const getCreyentesId = async (req,res)=> {
     try {
         const {id} = req.params;
-        conection_result(res,["SELECT * FROM categorias WHERE CategoriaID = ?", id])
+        conection_result(res,["SELECT * FROM Creyente WHERE ididentificacion = ?", id])
     } catch (error) {
         errores(res,error)
     }
@@ -34,9 +34,9 @@ const getCreyentesId = async (req,res)=> {
 
 const addCreyentes= async (req,res)=> {
     try {
-        const {CategoriaNombre, Descripcion, Imagen} = req.body;
-        const data = {CategoriaNombre, Descripcion, Imagen};
-        conection_result(res,["INSERT INTO categorias SET ?",data])
+        const {nombres, email, NroCelular, direccion, IdBarrio} = req.body;
+        const data = {nombres, email, NroCelular, direccion, IdBarrio};
+        conection_result(res,["INSERT INTO Creyente SET ?",data])
     } catch (error) {
         errores(res,error)
     }
@@ -45,7 +45,7 @@ const addCreyentes= async (req,res)=> {
 const deleteCreyentes= async (req,res)=>{
     try {
         const {id} = req.params;
-        conection_result(res,["DELETE FROM categorias WHERE CategoriaID = ?", id]);
+        conection_result(res,["DELETE FROM Creyente WHERE ididentificacion = ?", id]);
     } catch (error) {
         errores(res,error)
     }
@@ -54,16 +54,16 @@ const deleteCreyentes= async (req,res)=>{
 const updateCreyentes= async (req,res)=> {
     try {
         const {id} = req.params;
-        const {CategoriaNombre, Descripcion, Imagen} = req.body;
-        const data = {CategoriaNombre, Descripcion, Imagen};
-        conection_result(res,["UPDATE categorias SET ? WHERE CategoriaID = ?",[data,id]]);
+        const {nombres, email, NroCelular, direccion, IdBarrio} = req.body;
+        const data = {nombres, email, NroCelular, direccion, IdBarrio};
+        conection_result(res,["UPDATE Creyente SET ? WHERE ididentificacion = ?",[data,id]]);
     } catch (error) {
         errores(res,error)
     }
 }
 
 export const methodsHTTP = {
-    getCreyentes ,
+    getCreyentes,
     getCreyentesId,
     addCreyentes,
     deleteCreyentes,
